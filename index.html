@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aroosa Shakeel Khan — AI Engineer</title>
+<meta name="description" content="AI Engineer specialising in Azure OpenAI, Conversational AI, RAG systems and Document Intelligence. 5 years building enterprise AI solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1F2D;
+    --teal: #0E8C6A;
+    --teal-light: #12A87E;
+    --teal-pale: #E6F5F0;
+    --gold: #C9A227;
+    --slate: #4A5568;
+    --mist: #F7F9FB;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #1A2332;
+    --text-muted: #64748B;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--slate);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 15%; bottom: 15%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-desc {
+    font-size: 1.0625rem;
+    color: var(--slate);
+    max-width: 42ch;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--teal);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+    background: var(--mist);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: 'AI';
+    position: absolute;
+    right: -0.1em; bottom: -0.15em;
+    font-family: var(--font-display);
+    font-size: 18rem;
+    color: rgba(14,140,106,0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .stat-card:hover::before { transform: scaleX(1); }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+
+  .tech-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  .tag-teal { background: var(--teal-pale); color: var(--teal); }
+  .tag-navy { background: #EEF1F5; color: var(--navy); }
+  .tag-gold { background: #FDF6E3; color: #8B6914; }
+
+  /* ── SECTIONS ─────────────────────────────────── */
+  section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 1.0625rem;
+    color: var(--slate);
+    max-width: 58ch;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ─────────────────────────────────────── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--slate);
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--mist);
+    border-radius: 10px;
+    border-left: 3px solid var(--teal);
+  }
+
+  .highlight-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .highlight-text strong {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .highlight-text span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ── PROJECTS ─────────────────────────────────── */
+  #projects { background: var(--mist); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(13,31,45,0.1);
+  }
+
+  .project-stripe {
+    height: 4px;
+    background: var(--teal);
+  }
+
+  .project-stripe.gold { background: var(--gold); }
+  .project-stripe.navy { background: var(--navy); }
+
+  .project-body { padding: 1.75rem; }
+
+  .project-type {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-type.gold-type { color: var(--gold); }
+  .project-type.navy-type { color: var(--navy); }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-pill {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--teal-pale);
+    color: var(--teal);
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .stack-pill.dark { background: #EEF1F5; color: var(--navy); }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.7rem; }
+
+  .project-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--gold);
+    color: #fff;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── EXPERIENCE ───────────────────────────────── */
+  #experience { background: var(--white); }
+
+  .experience-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .experience-item:last-child { border-bottom: none; }
+
+  .exp-meta {
+    padding-top: 0.25rem;
+  }
+
+  .exp-period {
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-location {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .exp-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .exp-desc {
+    font-size: 0.925rem;
+    color: var(--slate);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .exp-achievements {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-achievements li {
+    font-size: 0.875rem;
+    color: var(--slate);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-achievements li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 0.7rem;
+    top: 0.25rem;
+  }
+
+  /* ── SKILLS ───────────────────────────────────── */
+  #skills { background: var(--navy); color: #fff; }
+
+  #skills .section-label { color: var(--teal-light); }
+  #skills .section-label::after { background: var(--teal-light); }
+  #skills .section-title { color: #fff; }
+  #skills .section-lead { color: rgba(255,255,255,0.6); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .skill-group:hover { background: rgba(255,255,255,0.08); }
+
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-list li {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    flex-shrink: 0;
+  }
+
+  /* ── CERTS ────────────────────────────────────── */
+  #certifications { background: var(--mist); }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(13,31,45,0.08);
+  }
+
+  .cert-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .cert-icon.azure { background: #EBF3FB; }
+  .cert-icon.huawei { background: #FDF0E0; }
+  .cert-icon.planned { background: var(--teal-pale); }
+
+  .cert-info strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .cert-info span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .cert-status {
+    margin-top: 0.4rem;
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .status-earned { background: var(--teal-pale); color: var(--teal); }
+  .status-planned { background: #FEF3C7; color: #92400E; }
+
+  /* ── CONTACT ──────────────────────────────────── */
+  #contact { background: var(--white); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-statement {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-statement em { color: var(--teal); font-style: italic; }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--slate);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--teal);
+    background: var(--teal-pale);
+    transform: translateX(4px);
+  }
+
+  .contact-link-icon {
+    font-size: 1.1rem;
+    width: 36px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .contact-link-text strong {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .contact-link-text span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .contact-right {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: #fff;
+  }
+
+  .availability-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .availability-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .availability-item:last-child { border-bottom: none; }
+
+  .avail-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-green { background: #4ADE80; box-shadow: 0 0 6px rgba(74,222,128,0.5); }
+  .dot-yellow { background: #FCD34D; }
+
+  .avail-text {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  footer a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--teal-light); }
+
+  /* ── ANIMATIONS ───────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left::after { display: none; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Aroosa Shakeel Khan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-tag">AI Engineer · Azure Specialist</span>
+    <h1 class="hero-name">Building <em>intelligent</em><br>enterprise AI</h1>
+    <p class="hero-desc">
+      Five years designing and deploying production AI systems — conversational agents, RAG pipelines, document intelligence, and computer vision — across the Microsoft Azure ecosystem.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View projects →</a>
+      <a href="#contact" class="btn-secondary">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years in AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">AI systems built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">RAG</div>
+        <div class="stat-label">Production pipelines</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Azure</div>
+        <div class="stat-label">OpenAI certified</div>
+      </div>
+    </div>
+
+    <div class="tech-tags">
+      <span class="tech-tag tag-teal">Azure OpenAI</span>
+      <span class="tech-tag tag-teal">Copilot Studio</span>
+      <span class="tech-tag tag-teal">RAG</span>
+      <span class="tech-tag tag-navy">Python</span>
+      <span class="tech-tag tag-navy">LLM Integration</span>
+      <span class="tech-tag tag-navy">Document Intelligence</span>
+      <span class="tech-tag tag-gold">Computer Vision</span>
+      <span class="tech-tag tag-gold">Power Platform</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2 class="section-title reveal">AI engineer with a real-world track record</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm an AI Engineer with an MS in Computer Science and five years of hands-on experience deploying intelligent systems in enterprise environments. My work sits at the intersection of cutting-edge AI research and practical business delivery — taking ideas from prototype to production using Microsoft Azure.
+        </p>
+        <p>
+          At Stallions Technologies in the UK, I led the design and deployment of over ten AI solutions serving enterprise clients — from GPT-powered internal assistants handling thousands of queries, to document automation pipelines that replaced days of manual processing, to a computer vision system tracking fish in sonar video using custom algorithms.
+        </p>
+        <p>
+          I'm equally comfortable discussing model evaluation trade-offs with a data science team or explaining AI ROI to a C-suite. I've taught machine learning at university level and believe good AI engineering is as much about communication as it is about code.
+        </p>
+        <p>
+          I'm currently open to senior AI engineer, AI manager, and lead roles — particularly those involving relocation or remote work across the UK, Europe, UAE, or North America.
+        </p>
+      </div>
+
+      <div class="about-highlights reveal">
+        <div class="highlight-item">
+          <div class="highlight-icon">🎓</div>
+          <div class="highlight-text">
+            <strong>MS Computer Science</strong>
+            <span>University of the Punjab, 2018</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🇬🇧</div>
+          <div class="highlight-text">
+            <strong>UK enterprise experience</strong>
+            <span>Stallions Technologies, London — 5 years</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🏗️</div>
+          <div class="highlight-text">
+            <strong>Production AI deployments</strong>
+            <span>RAG, conversational AI, document intelligence</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📚</div>
+          <div class="highlight-text">
+            <strong>University lecturer</strong>
+            <span>Machine Learning & Discrete Mathematics</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🌍</div>
+          <div class="highlight-text">
+            <strong>Open to relocation</strong>
+            <span>UK · UAE · Germany · Canada · Remote/USD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title reveal">Enterprise AI systems, delivered</h2>
+    <p class="section-lead reveal">Production deployments built at Stallions Technologies for enterprise clients across the Microsoft Azure ecosystem.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-stripe"></div>
+        <div class="project-body">
+          <div class="project-type">Conversational AI · GenAI</div>
+          <h3 class="project-title">Grosvenor GPT</h3>
+          <p class="project-desc">Enterprise GPT-powered assistant enabling employees to access organisational knowledge, route approval requests, and retrieve insights using natural language. Deployed across Microsoft 365 and Teams.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Azure OpenAI</span>
+            <span class="stack-pill">Copilot Studio</span>
+            <span class="stack-pill">Azure AI Search</span>
+            <span class="stack-pill dark">Bot Framework</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-stripe"></div>
+        <div class="project-body">
+          <div class="project-type">Knowledge Management · RAG</div>
+          <h3 class="project-title">NEON — Who's Who</h3>
+          <p class="project-desc">Organisational intelligence assistant allowing employees to find colleagues, understand team structures, and retrieve HR knowledge through natural language queries. Built on RAG architecture with SharePoint integration.</p>
+          <div class="project-stack">
+            <span class="stack-pill">RAG Pipeline</span>
+            <span class="stack-pill">Azure OpenAI</span>
+            <span class="stack-pill dark">SharePoint</span>
+            <span class="stack-pill dark">Power Virtual Agents</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-stripe gold"></div>
+        <div class="project-body">
+          <div class="project-type gold-type">Document Intelligence · Automation</div>
+          <h3 class="project-title">Purchase Ledger Invoice Automation</h3>
+          <p class="project-desc">End-to-end pipeline automating invoice data extraction, validation, and reporting. Combined OCR, LLM-powered extraction, and Power Platform automation to significantly reduce manual processing time across finance teams.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Azure Document Intelligence</span>
+            <span class="stack-pill">OCR</span>
+            <span class="stack-pill dark">Power Automate</span>
+            <span class="stack-pill dark">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-stripe gold"></div>
+        <div class="project-body">
+          <div class="project-type gold-type">NLP · HR Automation</div>
+          <h3 class="project-title">HR Email Auto-Responder</h3>
+          <p class="project-desc">Intelligent email triage and auto-response system for HR teams. Uses NLP to classify incoming queries, retrieve relevant policy content, and generate accurate draft responses — reducing response time from days to minutes.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Azure Language</span>
+            <span class="stack-pill">LLM Integration</span>
+            <span class="stack-pill dark">Power Automate</span>
+            <span class="stack-pill dark">SharePoint</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-stripe navy"></div>
+        <div class="project-body">
+          <div class="project-type navy-type">Computer Vision · Research</div>
+          <h3 class="project-title">Sonar Fish Detection & Tracking</h3>
+          <p class="project-desc">Custom object detection and motion analysis system for tracking individual fish across sonar video frames. Built using OpenCV and a custom Euclidean-distance tracking algorithm — a technically distinctive project outside the standard enterprise AI toolkit.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">OpenCV</span>
+            <span class="stack-pill dark">Object Detection</span>
+            <span class="stack-pill dark">NumPy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-stripe navy"></div>
+        <div class="project-body">
+          <div class="project-type navy-type">Agile · Productivity AI</div>
+          <h3 class="project-title">PBI Content Creator Bot</h3>
+          <p class="project-desc">Scrum productivity tool translating project ideas into structured, actionable backlog items automatically. Integrates with Azure DevOps to streamline sprint planning for engineering teams using Power Virtual Agents and Power Automate.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Power Virtual Agents</span>
+            <span class="stack-pill">Power Automate</span>
+            <span class="stack-pill dark">Azure DevOps</span>
+            <span class="stack-pill dark">Azure OpenAI</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title reveal">Career history</h2>
+
+    <div class="experience-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Aug 2021 – Mar 2026</div>
+        <div class="exp-company">Stallions Technologies</div>
+        <div class="exp-location">United Kingdom</div>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-title">AI Engineer — Azure AI Services</h3>
+        <p class="exp-desc">Led design and deployment of intelligent automation solutions across Conversational AI, Generative AI, and Document Intelligence — delivering production AI systems integrated with Microsoft 365, Teams, and SharePoint for enterprise clients.</p>
+        <ul class="exp-achievements">
+          <li>Engineered multiple GPT-powered chatbots and assistants deployed across enterprise Microsoft 365 environments serving hundreds of employees</li>
+          <li>Built document intelligence pipelines combining OCR, RAG, and Power Platform automation — cutting manual processing time significantly across finance and HR departments</li>
+          <li>Designed and deployed Sonar Fish Detection system using custom computer vision and Euclidean-distance tracking algorithms</li>
+          <li>Delivered Agile productivity bots translating project briefs into structured DevOps backlog items, improving sprint planning efficiency</li>
+          <li>Collaborated cross-functionally with stakeholders to translate business requirements into scalable AI solutions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2022 – May 2022</div>
+        <div class="exp-company">Kinnaird College</div>
+        <div class="exp-location">Lahore, Pakistan</div>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-title">Visiting Lecturer — Machine Learning</h3>
+        <p class="exp-desc">Delivered machine learning curriculum to BS Computer Science students alongside professional AI engineering work.</p>
+        <ul class="exp-achievements">
+          <li>Designed and delivered comprehensive ML curriculum including supervised learning, neural networks, and model evaluation</li>
+          <li>Created practical assessments bridging theory and real-world application</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Oct 2017 – Feb 2020</div>
+        <div class="exp-company">University of the Punjab</div>
+        <div class="exp-location">Lahore, Pakistan</div>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-title">Visiting Lecturer — Discrete Mathematics</h3>
+        <p class="exp-desc">Delivered mathematics education to diversified student cohorts across Computer Science, Software Engineering, IT, and MSc programmes.</p>
+        <ul class="exp-achievements">
+          <li>Taught complex mathematical concepts to 200+ students across multiple disciplines</li>
+          <li>Developed materials tailored to varied backgrounds and learning styles</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title reveal">Technical expertise</h2>
+    <p class="section-lead reveal">Full-stack AI delivery across the Azure ecosystem — from architecture and development to deployment and monitoring.</p>
+
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Azure AI Platform</div>
+        <ul class="skill-list">
+          <li>Azure OpenAI Service</li>
+          <li>Azure AI Search</li>
+          <li>Document Intelligence</li>
+          <li>Azure Language & Vision</li>
+          <li>Microsoft Copilot Studio</li>
+          <li>Bot Framework</li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">AI & ML Engineering</div>
+        <ul class="skill-list">
+          <li>Retrieval-Augmented Generation (RAG)</li>
+          <li>LLM integration & prompt engineering</li>
+          <li>Conversational AI design</li>
+          <li>NLP pipeline development</li>
+          <li>Computer Vision (OpenCV)</li>
+          <li>Knowledge mining</li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Automation & Low-Code</div>
+        <ul class="skill-list">
+          <li>Microsoft Power Automate</li>
+          <li>Power Apps</li>
+          <li>Power Virtual Agents</li>
+          <li>SharePoint integration</li>
+          <li>Microsoft 365 ecosystem</li>
+          <li>Business process automation</li>
+        </ul>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Development & Tools</div>
+        <ul class="skill-list">
+          <li>Python · NumPy · OpenCV</li>
+          <li>Azure Function Apps</li>
+          <li>OCR · LUIS · QnA Maker</li>
+          <li>Git · Agile / Scrum</li>
+          <li>Microsoft Teams development</li>
+          <li>REST API integration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label">Certifications</div>
+    <h2 class="section-title reveal">Qualifications</h2>
+
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon azure">🔷</div>
+        <div class="cert-info">
+          <strong>Microsoft Azure AI Fundamentals</strong>
+          <span>AI-900 · Microsoft</span><br>
+          <span class="cert-status status-earned">Earned Sep 2022</span>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon huawei">🟠</div>
+        <div class="cert-info">
+          <strong>HCIA-AI (Artificial Intelligence)</strong>
+          <span>Huawei · Aug 2020</span><br>
+          <span class="cert-status status-earned">Earned</span>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon huawei">📊</div>
+        <div class="cert-info">
+          <strong>Training of Machine Learning</strong>
+          <span>Jul 2020</span><br>
+          <span class="cert-status status-earned">Earned</span>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon planned">⭐</div>
+        <div class="cert-info">
+          <strong>Azure AI Engineer Associate</strong>
+          <span>AI-102 · Microsoft · In progress</span><br>
+          <span class="cert-status status-planned">In progress — 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <div class="contact-inner">
+      <div class="contact-left reveal">
+        <h2 class="contact-statement">Let's build something <em>intelligent</em> together.</h2>
+        <p class="contact-sub">I'm open to senior AI engineer, AI manager, and lead roles — particularly in the UK, UAE, Germany, Canada, or fully remote. Relocation-ready.</p>
+
+        <div class="contact-links">
+          <a href="mailto:aroosa.shakeelkhan@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉️</span>
+            <div class="contact-link-text">
+              <strong>Email</strong>
+              <span>aroosa.shakeelkhan@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://github.com/aroosashakeelkhan" target="_blank" class="contact-link">
+            <span class="contact-link-icon">⌥</span>
+            <div class="contact-link-text">
+              <strong>GitHub</strong>
+              <span>github.com/aroosashakeelkhan</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/aroosa-shakeel-khan" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🔗</span>
+            <div class="contact-link-text">
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/aroosa-shakeel-khan</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right reveal">
+        <div class="availability-title">Current availability</div>
+
+        <div class="availability-item">
+          <div class="avail-dot dot-green"></div>
+          <span class="avail-text">Open to full-time roles — available immediately</span>
+        </div>
+        <div class="availability-item">
+          <div class="avail-dot dot-green"></div>
+          <span class="avail-text">Open to relocation — UK, UAE, Germany, Canada</span>
+        </div>
+        <div class="availability-item">
+          <div class="avail-dot dot-green"></div>
+          <span class="avail-text">Open to remote / USD-paying roles globally</span>
+        </div>
+        <div class="availability-item">
+          <div class="avail-dot dot-yellow"></div>
+          <span class="avail-text">Targeting: AI Manager · Senior AI Engineer · AI Lead</span>
+        </div>
+        <div class="availability-item">
+          <div class="avail-dot dot-yellow"></div>
+          <span class="avail-text">Big 4 · Global tech · Innovative scale-ups</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Aroosa Shakeel Khan · AI Engineer</p>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="https://github.com/aroosashakeelkhan" target="_blank">GitHub</a>
+    <a href="mailto:aroosa.shakeelkhan@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
